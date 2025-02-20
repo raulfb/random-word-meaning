@@ -1,35 +1,20 @@
-# Use the official Golang image as a build stage
-FROM golang:1.20 AS builder
+# Usa una imagen base de Go que soporte la versión 1.23
+FROM golang:1.23
 
-# Set the Current Working Directory inside the container
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copy go.mod and go.sum files
-COPY go.mod go.sum ./
-
-# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
-RUN go mod tidy
-
-# Copy the source code into the container
+# Copia los archivos del proyecto al directorio de trabajo
 COPY . .
 
-# Build the Go app
+# Descarga las dependencias del módulo Go
+RUN go mod tidy
+
+# Compila la aplicación
 RUN go build -o main .
 
-# Start a new stage from scratch
-FROM alpine:latest
-
-# Set the Current Working Directory inside the container
-WORKDIR /app
-
-# Copy the Pre-built binary file from the previous stage
-COPY --from=builder /app/main .
-
-# Copy the words.txt file
-COPY words.txt .
-
-# Expose port 8081 to the outside world
+# Expone el puerto en el que la aplicación se ejecutará
 EXPOSE 8081
 
-# Command to run the executable
+# Comando para ejecutar la aplicación
 CMD ["./main"]

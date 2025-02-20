@@ -39,23 +39,15 @@ To run the application using Docker, follow these steps:
    Make sure you are in the root directory of the project (where the `Dockerfile` is located) and run the following command:
 
    ```bash
-   docker build -t your-username/random-word-meaning .
+   docker build -t random-word-meaning .
    ```
-
-   Alternatively, you can simply run:
-
-   ```bash
-   docker build .
-   ```
-
-   However, it is recommended to use the `-t` option to tag your image for easier identification.
 
 2. **Run the Docker Container:**
 
    After the image is built, you can run the application in a Docker container with the following command:
 
    ```bash
-   docker run -p 8081:8080 your-username/random-word-meaning
+   docker run -p 8081:8081 random-word-meaning
    ```
 
 3. **Access the Application:**
