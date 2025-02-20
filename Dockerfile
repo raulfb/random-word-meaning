@@ -28,8 +28,8 @@ COPY --from=builder /app/main .
 # Copy the words.txt file
 COPY words.txt .
 
-# Expose port 8080 to the outside world
-EXPOSE 8080
+# Expose port 8081 to the outside world
+EXPOSE 8081
 
 # Command to run the executable
 CMD ["./main"]

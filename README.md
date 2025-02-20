@@ -55,12 +55,12 @@ To run the application using Docker, follow these steps:
    After the image is built, you can run the application in a Docker container with the following command:
 
    ```bash
-   docker run -p 8080:8080 your-username/random-word-meaning
+   docker run -p 8081:8080 your-username/random-word-meaning
    ```
 
 3. **Access the Application:**
 
-   Open your web browser and go to `http://localhost:8080` to access the application.
+   Open your web browser and go to `http://localhost:8081` to access the application.
 
 ## Notes
 
