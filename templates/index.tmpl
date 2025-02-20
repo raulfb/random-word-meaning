@@ -7,15 +7,18 @@
     <title>Random Word Meaning</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        html, body {
+            height: 100%; /* Ensure html and body take full height */
+            margin: 0; /* Remove default margin */
+            overflow: hidden; /* Prevent scrolling */
+        }
         body {
             font-family: 'Georgia', serif; /* Use a serif font for a classic look */
             background-color: #f4f1e6; /* Light beige background */
-            margin: 0;
             color: #333; /* Dark text color */
             text-align: center; /* Center text */
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure footer is at the bottom */
             padding: 20px; /* Add some padding */
         }
         main {
@@ -27,6 +30,7 @@
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for main */
             border: 1px solid #ccc; /* Light border */
+            overflow: auto; /* Allow scrolling within the main if needed */
         }
         h1 {
             color: #5a3e36; /* Dark brown title color */
@@ -68,9 +72,9 @@
             color: #5a3e36; /* Dark brown text color for meaning */
             display: none; /* Initially hidden */
             padding: 10px;
-            border: 1px solid #8b5a2b; /* Brown border */
             border-radius: 5px; /* Rounded corners */
             background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque background */
+            /* Removed border */
         }
     </style>
 </head>
@@ -81,6 +85,7 @@
             <div class="decorative-line"></div> <!-- Decorative line -->
             <p>Click the button below to get a random word and its meaning.</p>
             <button id="randomWordButton" onclick="showRandomWord()">Random Word</button>
+            <h2 id="word" style="display: none;"></h2> <!-- Title for the word -->
             <div id="meaning"></div>
         </section>
     </main>
@@ -94,8 +99,10 @@
             fetch('/random-word')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('meaning').innerText = "Word: " + data.word + "\nMeaning: " + data.meaning;
-                    document.getElementById('meaning').style.display = 'block'; // Show the word and its meaning
+                    document.getElementById('word').innerText = data.word; // Set the word as the title
+                    document.getElementById('word').style.display = 'block'; // Show the word title
+                    document.getElementById('meaning').innerText = data.meaning; // Set the meaning
+                    document.getElementById('meaning').style.display = 'block'; // Show the meaning
                 })
                 .catch(error => {
                     console.error('Error fetching the word:', error);
