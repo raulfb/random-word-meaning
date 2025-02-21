@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Word Meaning</title>
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         html, body {
             height: 100%; /* Ensure html and body take full height */
@@ -21,7 +22,8 @@
             padding: 20px; /* Add some padding */
         }
         main {
-            width: 50%; /* Fixed width for main */
+            width: 90%; /* Use a percentage for responsive width */
+            max-width: 750px; /* Set a max width */
             margin: auto; /* Center content */
             padding: 30px; /* Internal spacing */
             background: #f9f3e8; /* Slightly opaque white background */
@@ -71,8 +73,21 @@
             display: none; /* Initially hidden */
             padding: 10px;
             border-radius: 5px; /* Rounded corners */
-            background-color: #f9f3e8 /* Slightly opaque background */
-            /* Removed border */
+            background-color: #f9f3e8; /* Slightly opaque background */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Smaller font size for smaller screens */
+            }
+            p {
+                font-size: 1em; /* Smaller paragraph font size */
+            }
+            button {
+                padding: 8px 16px; /* Adjust button padding */
+                font-size: 14px; /* Smaller button font size */
+            }
         }
     </style>
 </head>
@@ -80,10 +95,10 @@
     <main>
         <section id="home">
             <h1>Random Word Meaning</h1>
-            <div class="decorative-line"></div> <!-- Decorative line -->
+            <div class="decorative-line"></div> 
             <p>Click the button below to get a random word and its meaning.</p>
             <button id="randomWordButton" onclick="showRandomWord()">Random Word</button>
-            <h2 id="word" style="display: none;"></h2> <!-- Title for the word -->
+            <h2 id="word" style="display: none;"></h2>
             <div id="meaning"></div>
         </section>
     </main>
@@ -97,10 +112,10 @@
             fetch('/random-word')
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('word').innerText = data.word; // Set the word as the title
-                    document.getElementById('word').style.display = 'block'; // Show the word title
-                    document.getElementById('meaning').innerText = data.meaning; // Set the meaning
-                    document.getElementById('meaning').style.display = 'block'; // Show the meaning
+                    document.getElementById('word').innerText = data.word;
+                    document.getElementById('word').style.display = 'block';
+                    document.getElementById('meaning').innerText = data.meaning;
+                    document.getElementById('meaning').style.display = 'block'; 
                 })
                 .catch(error => {
                     console.error('Error fetching the word:', error);
