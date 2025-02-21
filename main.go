@@ -77,9 +77,10 @@ func main() {
 
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
+	r.Static("/assets", "./assets")
 
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl", nil) // Render the template
+		c.HTML(http.StatusOK, "index.html", nil) // Render the template
 	})
 
 	r.GET("/random-word", func(c *gin.Context) {
