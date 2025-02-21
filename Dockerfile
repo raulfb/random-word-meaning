@@ -10,8 +10,8 @@ COPY . .
 # Descarga las dependencias del módulo Go
 RUN go mod tidy
 
-# Compila la aplicación para Linux
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
+# Compila la aplicación para Linux en arquitectura ARM
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o main .
 
 # Usa una imagen más ligera para el contenedor final
 FROM alpine:latest
