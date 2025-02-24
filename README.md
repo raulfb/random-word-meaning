@@ -1,7 +1,7 @@
 # Random Word Meaning
 
 A simple web application that generates a random English word and displays its meaning. This application uses the Dictionary API to fetch the definitions of the words.
-
+ 
 ## Features
 
 - Generate a random English word.
